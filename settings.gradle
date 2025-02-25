@@ -1,0 +1,6 @@
+include ':Latte-ec'
+include ':Latte-core'
+include ':latte-compiler'
+include ':latte-annotations'
+include ':example'
+rootProject.name = "late"
