@@ -3,8 +3,8 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
       <module name="late.example" target="1.8" />
-      <module name="late.Latte-core" target="1.8" />
-      <module name="late.Latte-ec" target="1.8" />
+      <module name="late.latte-core" target="1.8" />
+      <module name="late.latte-ec" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

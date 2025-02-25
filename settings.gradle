@@ -1,5 +1,5 @@
-include ':Latte-ec'
-include ':Latte-core'
+include ':latte-ec'
+include ':latte-core'
 include ':latte-compiler'
 include ':latte-annotations'
 include ':example'

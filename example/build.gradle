@@ -29,7 +29,8 @@ android {
 }
 
 dependencies {
-    compile project(path: ':Latte-ec')
+    api project(path: ':latte-ec')
     annotationProcessor project(path: ':latte-compiler')
+    testImplementation 'junit:junit:4.12'
 
 }
