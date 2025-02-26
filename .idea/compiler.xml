@@ -2,9 +2,15 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
-      <module name="late.example" target="1.8" />
-      <module name="late.latte-core" target="1.8" />
-      <module name="late.latte-ec" target="1.8" />
+      <module name="latte.example" target="1.8" />
+      <module name="latte.latte_core" target="1.8" />
+      <module name="latte.latte_ec" target="1.8" />
+      <module name="LatteEc-master.app" target="1.8" />
+      <module name="LatteEc-master.latte_core" target="1.8" />
+      <module name="LatteEc-master.latte_ec" target="1.8" />
+      <module name="LatteEc-master3.example" target="1.8" />
+      <module name="LatteEc-master3.latte_core" target="1.8" />
+      <module name="LatteEc-master3.latte_ec" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

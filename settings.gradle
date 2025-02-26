@@ -1,6 +1,1 @@
-include ':latte-ec'
-include ':latte-core'
-include ':latte-compiler'
-include ':latte-annotations'
-include ':example'
-rootProject.name = "late"
+include ':example', ':latte_compiler', ':latte_annotations', ':latte_core', ':latte_ec'
