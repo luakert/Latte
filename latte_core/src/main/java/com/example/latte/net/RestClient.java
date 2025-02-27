@@ -10,9 +10,11 @@ import com.example.latte.net.callback.RequestCallbacks;
 import com.example.latte.ui.LatteLoader;
 import com.example.latte.ui.LoaderStyle;
 
-import java.util.Map;
+import java.io.File;
 import java.util.WeakHashMap;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,7 +26,8 @@ public class RestClient {
     private final ISuccess ISUCCESS;
     private final IFailure IFAILURE;
     private final IError IERROR;
-    private final RequestBody BOY;
+    private final RequestBody BODY;
+    private File file;
     private LoaderStyle LOAD_STYLE;
     private final Context CONTEXT;
 
@@ -35,15 +38,17 @@ public class RestClient {
                       IError ierror,
                       RequestBody boy,
                       Context context,
-                      LoaderStyle loaderStyle) {
+                      LoaderStyle loaderStyle,
+                      File file) {
         this.URL = url;
         PARAMS.putAll(params);
         this.IREQUEST = irequest;
         this.ISUCCESS = isuccess;
         this.IFAILURE = ifailure;
         this.IERROR = ierror;
-        this.BOY = boy;
+        this.BODY = boy;
         this.CONTEXT = context;
+        this.file = file;
         this.LOAD_STYLE = loaderStyle;
     }
 
@@ -56,11 +61,26 @@ public class RestClient {
     }
 
     public final void post() {
-        request(HttpMethod.POST);
+//        request(HttpMethod.POST);
+        if (BODY == null) {
+            request(HttpMethod.POST);
+        } else {
+            if (!PARAMS.isEmpty()) {
+                throw new RuntimeException("params must be unnull");
+            }
+            request(HttpMethod.POST_RAW);
+        }
     }
 
     public final void put() {
-        request(HttpMethod.PUT);
+        if (BODY == null) {
+            request(HttpMethod.PUT);
+        } else {
+            if (!PARAMS.isEmpty()) {
+                throw new RuntimeException("params must be unnull");
+            }
+            request(HttpMethod.PUT_RAW);
+        }
     }
 
     public final void delete() {
@@ -88,8 +108,19 @@ public class RestClient {
             case PUT:
                 call = restService.put(URL, PARAMS);
                 break;
+            case POST_RAW:
+                call = restService.postRaw(URL, BODY);
+                break;
+            case PUT_RAW:
+                call = restService.putRaw(URL, BODY);
+                break;
             case DELETE:
                 call = restService.delete(URL, PARAMS);
+                break;
+            case UPLOAD:
+                RequestBody requestBody = RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), file);
+                MultipartBody.Part uploadbody = MultipartBody.Part.createFormData("file", file.getName(), requestBody);
+                call = RestCreator.getRestService().upload(URL, uploadbody);
                 break;
             default:
                 break;

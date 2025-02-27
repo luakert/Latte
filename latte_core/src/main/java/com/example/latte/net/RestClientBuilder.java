@@ -8,6 +8,7 @@ import com.example.latte.net.callback.IRequest;
 import com.example.latte.net.callback.ISuccess;
 import com.example.latte.ui.LoaderStyle;
 
+import java.io.File;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -24,6 +25,7 @@ public class RestClientBuilder {
     private RequestBody mBoy;
     private LoaderStyle LOAD_STYLE = null;
     private Context CONTEXT = null;
+    private File mFile;
 
     RestClientBuilder() {
 
@@ -43,6 +45,17 @@ public class RestClientBuilder {
         PARAMS.put(key, value);
         return this;
     }
+
+    public final RestClientBuilder file(File file) {
+        this.mFile = file;
+        return this;
+    }
+
+    public final RestClientBuilder file(String file) {
+        this.mFile = new File(file);
+        return this;
+    }
+
 
     public final RestClientBuilder raw(String raw) {
         this.mBoy = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"),raw);
@@ -83,6 +96,6 @@ public class RestClientBuilder {
 
     public final RestClient build() {
         return new RestClient(mUrl, PARAMS, mIrequest, mIsuccess, mIfailure, mIerror, mBoy,
-                CONTEXT, LOAD_STYLE);
+                CONTEXT, LOAD_STYLE, mFile);
     }
 }
