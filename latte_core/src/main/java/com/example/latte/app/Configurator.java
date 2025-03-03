@@ -6,19 +6,22 @@ import com.joanzapata.iconify.Iconify;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import okhttp3.Interceptor;
+
 public class Configurator {
-    public static final HashMap<String, Object> LATTE_CONFIGS = new HashMap<>();
+    public static final HashMap<Object, Object> LATTE_CONFIGS = new HashMap<>();
     public static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
+    private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
-        LATTE_CONFIGS.put(ConfigType.CONFIG_READEY.name(), false);
+        LATTE_CONFIGS.put(ConfigType.CONFIG_READEY, false);
     }
 
     public static Configurator getInstance() {
         return Holder.INSTANCE;
     }
 
-    final HashMap<String, Object> getLatteConfigs() {
+    final HashMap<Object, Object> getLatteConfigs() {
         return LATTE_CONFIGS;
     }
 
@@ -28,11 +31,11 @@ public class Configurator {
 
     public final void configure() {
         initIcons();
-        LATTE_CONFIGS.put(ConfigType.CONFIG_READEY.name(), true);
+        LATTE_CONFIGS.put(ConfigType.CONFIG_READEY, true);
     }
 
     public final Configurator withAppHost(String host) {
-        LATTE_CONFIGS.put(ConfigType.API_HOST.name(), host);
+        LATTE_CONFIGS.put(ConfigType.API_HOST, host);
         return this;
     }
 
@@ -50,18 +53,33 @@ public class Configurator {
         return this;
     }
 
+    public final Configurator withInterceptor(Interceptor interceptor) {
+        INTERCEPTORS.add(interceptor);
+        LATTE_CONFIGS.put(ConfigType.INTERCEPTORS, INTERCEPTORS);
+        return this;
+    }
+
+    public final Configurator withInterceptors(ArrayList<Interceptor> interceptor) {
+        INTERCEPTORS.addAll(interceptor);
+        LATTE_CONFIGS.put(ConfigType.INTERCEPTORS, INTERCEPTORS);
+        return this;
+    }
 
     private void checkConfiguration() {
-        final boolean isConfiging = ((boolean) LATTE_CONFIGS.get(ConfigType.CONFIG_READEY.name()));
-        if (isConfiging) {
+        final boolean isConfiging = (boolean) LATTE_CONFIGS.get(ConfigType.CONFIG_READEY);
+        if (!isConfiging) {
             throw new RuntimeException("Config is not ready");
         }
     }
 
     @SuppressWarnings("unchecked")
-    final <T> T getConfiguration(Enum<ConfigType> key) {
+    final <T> T getConfiguration(Object key) {
         checkConfiguration();
-        return (T) LATTE_CONFIGS.get(key.name());
+        final Object value = LATTE_CONFIGS.get(key);
+        if (value == null) {
+            throw new NullPointerException(key.toString() + " IS NULL");
+        }
+        return (T) LATTE_CONFIGS.get(key);
     }
 
 

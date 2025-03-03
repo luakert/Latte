@@ -6,15 +6,19 @@ import java.util.HashMap;
 
 public final class Latte {
     public static Configurator init(Context context) {
-        getConfigurator().put(ConfigType.APPLICATION_CONTEXT.name(), context.getApplicationContext());
+        Configurator.getInstance().getLatteConfigs()
+                .put(ConfigType.APPLICATION_CONTEXT, context.getApplicationContext());
         return Configurator.getInstance();
     }
 
     public static Context getApplication() {
-        return ((Context) getConfigurator().get(ConfigType.APPLICATION_CONTEXT.name()));
+        return ((Context) getConfiguration(ConfigType.APPLICATION_CONTEXT));
     }
 
-    public static HashMap<String, Object> getConfigurator() {
-        return Configurator.getInstance().getLatteConfigs();
+    public static Configurator getConfigurator() {
+        return Configurator.getInstance();
+    }
+    public static <T> T getConfiguration(Object key) {
+        return getConfigurator().getConfiguration(key);
     }
 }
