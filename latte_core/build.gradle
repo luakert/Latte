@@ -50,6 +50,7 @@ dependencies {
     api 'io.reactivex.rxjava2:rxjava:2.1.1'
     //RxAndroid的依赖包
     api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api 'com.bigkoo:convenientbanner:2.0.5'
     api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
     api project(':latte_compiler')
 }
