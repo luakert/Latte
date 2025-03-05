@@ -49,7 +49,6 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
             start(new LauncherScrollDelegate(), SINGLETASK);
         } else {
             Toast.makeText(getContext(), "start to ", Toast.LENGTH_LONG).show();
-
         }
     }
 
