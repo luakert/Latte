@@ -11,6 +11,7 @@ import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
 import com.example.latte.net.RestClient;
 import com.example.latte.net.callback.ISuccess;
+import com.example.latte.util.log.LatteLogger;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -30,19 +31,27 @@ public class SignUpDelegate extends LatteDelegate {
     @OnClick(R2.id.edit_sign_up)
     void OnClickSignUp() {
         if (checkForm()) {
-//            RestClient.builder()
-//                    .url("")
-//                    .param()
-//                    .success(new ISuccess() {
-//                        @Override
-//                        public void onSuccess(String response) {
-//
-//                        }
-//                    })
-//                    .build()
-//                    .post();
-            Toast.makeText(getContext(), "验证通过", Toast.LENGTH_LONG).show();
+            RestClient.builder()
+                    .url("http://192.168.56.1:8080/RestDataServer/api/user_profile.php")
+                    .params("name", mName.getText().toString())
+                    .params("email", mEmail.getText().toString())
+                    .params("phone", mPhoneNumber.getText().toString())
+                    .params("password", mPassWord.getText().toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            LatteLogger.json("USER_PROFILE", response);
+                            SignHandler.onSignUp(response);
+                        }
+                    })
+                    .build()
+                    .post();
         }
+    }
+
+    @OnClick(R2.id.tv_link_sign_in)
+    void onClickLink() {
+        start(new SignInDelegate());
     }
 
     private boolean checkForm() {
