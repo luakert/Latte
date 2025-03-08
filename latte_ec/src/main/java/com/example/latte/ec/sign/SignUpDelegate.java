@@ -1,11 +1,14 @@
 package com.example.latte.ec.sign;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.latte.app.ISignListener;
 import com.example.latte.delegate.LatteDelegate;
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
@@ -28,6 +31,8 @@ public class SignUpDelegate extends LatteDelegate {
     @BindView(R2.id.edit_sign_up_reset_pwd)
     TextInputEditText mResetpwd = null;
 
+    private ISignListener mIsignListener = null;
+
     @OnClick(R2.id.edit_sign_up)
     void OnClickSignUp() {
         if (checkForm()) {
@@ -41,11 +46,19 @@ public class SignUpDelegate extends LatteDelegate {
                         @Override
                         public void onSuccess(String response) {
                             LatteLogger.json("USER_PROFILE", response);
-                            SignHandler.onSignUp(response);
+                            SignHandler.onSignUp(response, mIsignListener);
                         }
                     })
                     .build()
                     .post();
+        }
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mIsignListener = ((ISignListener) activity);
         }
     }
 

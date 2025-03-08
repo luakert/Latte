@@ -1,11 +1,14 @@
 package com.example.latte.ec.launcher;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.latte.app.AccountManager;
+import com.example.latte.app.IUserChecker;
 import com.example.latte.delegate.LatteDelegate;
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
@@ -25,6 +28,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     private Timer mTimer = null;
     private int mCount = 5;
+    private ILauncherListener mLauncherListener;
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView() {
@@ -41,6 +45,13 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         mTimer.schedule(task, 0, 1000);
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ILauncherListener) {
+            mLauncherListener = ((ILauncherListener) activity);
+        }
+    }
 
     private void checkIsShowScroll() {
         boolean appFlag = LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_TIME_LAUNCHER_APP.name());
@@ -48,7 +59,21 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         if (!appFlag) {
             start(new LauncherScrollDelegate(), SINGLETASK);
         } else {
-            Toast.makeText(getContext(), "start to ", Toast.LENGTH_LONG).show();
+            AccountManager.checkAccount(new IUserChecker() {
+                @Override
+                public void onSignIn() {
+                    if (mLauncherListener != null) {
+                        mLauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
+                    }
+                }
+
+                @Override
+                public void onNotSignIn() {
+                    if (mLauncherListener != null) {
+                        mLauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
+                    }
+                }
+            });
         }
     }
 
