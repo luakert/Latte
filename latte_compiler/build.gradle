@@ -1,8 +1,16 @@
 apply plugin: 'java'
 
 dependencies {
+    compileOnly 'com.squareup:javapoet:1.9.0'
+
+//    compileOnly 'com.google.auto.service:auto-service:1.0-rc3'
+//    annotationProcessor('com.google.auto.service:auto-service:1.0-rc4')
+    implementation 'com.google.auto.service:auto-service:1.0-rc4'
+//    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc3'
+    compileOnly 'com.google.auto:auto-common:0.8'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':latte_annotations')
+
+    compile project(':latte_annotations')
 }
 
 sourceCompatibility = "1.7"

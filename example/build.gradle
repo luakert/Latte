@@ -21,5 +21,5 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':latte_ec')
-    api project(':server-local')
+//    api project(':server-local')
 }
