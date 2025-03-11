@@ -14,6 +14,8 @@ import java.util.Set;
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
+import javax.annotation.processing.SupportedSourceVersion;
+import javax.lang.model.SourceVersion;
 import javax.lang.model.element.AnnotationMirror;
 import javax.lang.model.element.AnnotationValue;
 import javax.lang.model.element.AnnotationValueVisitor;
@@ -23,11 +25,14 @@ import javax.lang.model.element.TypeElement;
 
 @SuppressWarnings("unused")
 @AutoService(Processor.class)
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class LatteProcessor extends AbstractProcessor {
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-
-        return false;
+        generateEntryCode(roundEnvironment);
+        generateAppEntryCode(roundEnvironment);
+        generatePayEntryCode(roundEnvironment);
+        return true;
     }
 
     @Override
@@ -63,6 +68,20 @@ public class LatteProcessor extends AbstractProcessor {
     }
 
     private void generateEntryCode(RoundEnvironment environment) {
-
+        EntryVisitor entryVisitor = new EntryVisitor();
+        entryVisitor.setFiler(processingEnv.getFiler());
+        scan(environment, EntryGenerator.class, entryVisitor);
     }
+
+    private void generatePayEntryCode(RoundEnvironment environment) {
+        PayEntryVisitor entryVisitor = new PayEntryVisitor(processingEnv.getFiler());
+        scan(environment, PayEntryGenerator.class, entryVisitor);
+    }
+
+    private void generateAppEntryCode(RoundEnvironment environment) {
+        AppRegisterVisitor entryVisitor = new AppRegisterVisitor(processingEnv.getFiler());
+        scan(environment, AppRegisterGenerator.class, entryVisitor);
+    }
+
+
 }
