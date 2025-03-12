@@ -28,16 +28,17 @@ public final class EntryVisitor extends SimpleAnnotationValueVisitor7<Void, Void
 
     @Override
     public Void visitType(TypeMirror typeMirror, Void aVoid) {
-        mTypeMirror = typeMirror;
+        generateJavaCode(typeMirror);
         return aVoid;
     }
 
-    private void generateJavaCode() {
-        final TypeSpec targetActivity = TypeSpec.classBuilder("WXEntryActivity")
-                .addModifiers(Modifier.PUBLIC)
-                .addModifiers(Modifier.FINAL)
-                .superclass(TypeName.get(mTypeMirror))
-                .build();
+    private void generateJavaCode(TypeMirror typeMirror) {
+        final TypeSpec targetActivity =
+                TypeSpec.classBuilder("WXEntryActivity")
+                        .addModifiers(Modifier.PUBLIC)
+                        .addModifiers(Modifier.FINAL)
+                        .superclass(TypeName.get(typeMirror))
+                        .build();
 
         final JavaFile javaFile = JavaFile.builder(mPackageName + ".wxapi", targetActivity)
                 .addFileComment("wechat in")

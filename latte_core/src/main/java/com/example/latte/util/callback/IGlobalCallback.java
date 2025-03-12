@@ -1,6 +1,6 @@
 package com.example.latte.util.callback;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 /**
  * Created by 傅令杰

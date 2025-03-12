@@ -25,15 +25,8 @@ import javax.lang.model.element.TypeElement;
 
 @SuppressWarnings("unused")
 @AutoService(Processor.class)
-@SupportedSourceVersion(SourceVersion.RELEASE_8)
+//@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class LatteProcessor extends AbstractProcessor {
-    @Override
-    public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        generateEntryCode(roundEnvironment);
-        generateAppEntryCode(roundEnvironment);
-        generatePayEntryCode(roundEnvironment);
-        return true;
-    }
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
@@ -53,6 +46,13 @@ public class LatteProcessor extends AbstractProcessor {
         return annotations;
     }
 
+    @Override
+    public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+        generateEntryCode(roundEnvironment);
+        generateAppEntryCode(roundEnvironment);
+        generatePayEntryCode(roundEnvironment);
+        return true;
+    }
     private void scan(RoundEnvironment env, Class<? extends Annotation> annotation,
                       AnnotationValueVisitor visitor) {
         for (Element typeEelement : env.getElementsAnnotatedWith(annotation)) {

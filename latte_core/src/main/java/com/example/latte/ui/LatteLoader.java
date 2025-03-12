@@ -1,10 +1,11 @@
 package com.example.latte.ui;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatDialog;
 import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
+
+import androidx.appcompat.app.AppCompatDialog;
 
 import com.example.latte.core.R;
 import com.example.latte.util.Dimenutil;

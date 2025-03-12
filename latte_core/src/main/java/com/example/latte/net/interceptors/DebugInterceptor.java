@@ -1,6 +1,7 @@
 package com.example.latte.net.interceptors;
 
-import android.support.annotation.RawRes;
+
+import androidx.annotation.RawRes;
 
 import com.example.latte.util.file.FileUtil;
 

@@ -3,7 +3,6 @@ package com.example.latte.ec.sign;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.TextInputEditText;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
@@ -15,6 +14,7 @@ import com.example.latte.ec.R2;
 import com.example.latte.net.RestClient;
 import com.example.latte.net.callback.ISuccess;
 import com.example.latte.util.log.LatteLogger;
+import com.google.android.material.textfield.TextInputEditText;
 
 import butterknife.BindView;
 import butterknife.OnClick;

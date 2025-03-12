@@ -1,8 +1,9 @@
 package com.example.latte.ui.launcher;
 
 import android.content.Context;
-import android.support.v7.widget.AppCompatImageView;
 import android.view.View;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.bigkoo.convenientbanner.holder.Holder;
 

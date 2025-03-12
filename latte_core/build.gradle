@@ -14,7 +14,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
-                includeCompileClasspath true
+//                includeCompileClasspath true
             }
         }
 
@@ -44,8 +44,8 @@ dependencies {
     api 'me.yokeyword:fragmentation:1.3.6'
     api 'me.yokeyword:fragmentation-swipeback:1.3.6'
     //butterknife
-    api 'com.jakewharton:butterknife:9.0.0-rc1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+    api 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     //retrofit
     api 'com.squareup.retrofit2:retrofit:2.4.0'
     api 'com.squareup.retrofit2:converter-scalars:2.4.0'
@@ -62,8 +62,8 @@ dependencies {
     //Log
     api 'com.orhanobut:logger:2.1.1'
     //数据库依赖
-    api 'org.greenrobot:greendao-generator:3.2.2'
-    api 'org.greenrobot:greendao:3.2.2'
+    api 'org.greenrobot:greendao-generator:3.3.0'
+    api 'org.greenrobot:greendao:3.3.0'
 
     api project(':latte_compiler')
     annotationProcessor project(':latte_compiler')

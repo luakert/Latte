@@ -13,7 +13,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
-                includeCompileClasspath true
+//                includeCompileClasspath true
             }
         }
 
@@ -30,7 +30,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
     api 'de.hdodenhof:circleimageview:2.1.0'
     api project(':latte_core')
 }

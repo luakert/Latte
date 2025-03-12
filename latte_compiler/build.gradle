@@ -1,14 +1,11 @@
 apply plugin: 'java'
+//apply plugin: 'com.google.auto.service.auto-service'
 
 
 dependencies {
-    compileOnly 'com.squareup:javapoet:1.9.0'
-
-//    compileOnly 'com.google.auto.service:auto-service:1.0-rc3'
-//    annotationProcessor('com.google.auto.service:auto-service:1.0-rc4')
-//    api 'com.google.auto.service:auto-service:1.0-rc4'
-    compileOnly 'com.google.auto.service:auto-service:1.0-rc4'
-    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc3'
+    compileOnly 'com.squareup:javapoet:1.10.0'
+    compileOnly 'com.google.auto.service:auto-service:1.0.1'
+    annotationProcessor 'com.google.auto.service:auto-service:1.0.1'
     compileOnly 'com.google.auto:auto-common:0.8'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
@@ -16,5 +13,8 @@ dependencies {
 
 }
 
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
+
+// sourceCompatibility = "1.8"
+// targetCompatibility = "1.8"
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8

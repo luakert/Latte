@@ -2,8 +2,10 @@ package com.example.latte.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.ContentFrameLayout;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ContentFrameLayout;
+//import androidx.annotation.Nullable;
+//import android.support.v7.widget.ContentFrameLayout;
 
 import com.example.latte.core.R;
 import com.example.latte.delegate.LatteDelegate;

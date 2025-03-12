@@ -2,10 +2,11 @@ package com.example.latte.ec.launcher;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.example.latte.app.AccountManager;
 import com.example.latte.app.IUserChecker;
