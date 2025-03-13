@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.latte.activity.ProxyActivity;
 import com.example.latte.app.ISignListener;
+import com.example.latte.app.Latte;
 import com.example.latte.delegate.LatteDelegate;
 import com.example.latte.ec.launcher.ILauncherListener;
 import com.example.latte.ec.launcher.LauncherDelegate;
@@ -25,6 +26,8 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         if (actionBar != null) {
             actionBar.hide();
         }
+
+        Latte.getConfigurator().withWeChatActivity(this);
     }
 
     @Override

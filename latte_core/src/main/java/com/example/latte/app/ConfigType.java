@@ -5,5 +5,8 @@ public enum ConfigType {
     APPLICATION_CONTEXT,
     CONFIG_READEY,
     ICON,
-    INTERCEPTORS
+    INTERCEPTORS,
+    WE_CHAT_APP_ID,
+    WE_CHAT_APP_SECRET,
+    ACTIVITY
 }

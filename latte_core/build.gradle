@@ -64,7 +64,8 @@ dependencies {
     //数据库依赖
     api 'org.greenrobot:greendao-generator:3.3.0'
     api 'org.greenrobot:greendao:3.3.0'
-
+    //微信依赖（包含统计）
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     api project(':latte_compiler')
     annotationProcessor project(':latte_compiler')
 }
