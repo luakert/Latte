@@ -13,6 +13,7 @@ import com.example.latte.app.IUserChecker;
 import com.example.latte.delegate.LatteDelegate;
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
+import com.example.latte.ec.main.EcBottomDelegate;
 import com.example.latte.util.storage.LattePreference;
 import com.example.latte.util.timer.BaseTimerTask;
 import com.example.latte.util.timer.ITimerListener;

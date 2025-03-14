@@ -33,8 +33,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
 
     @Override
     public LatteDelegate setRootDelegate() {
-
-        return new SignUpDelegate();
+        return new EcBottomDelegate();
     }
 
     @Override
@@ -56,7 +55,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "未登陆", Toast.LENGTH_LONG).show();
-                startWithPop(new SignInDelegate());
+                startWithPop(new EcBottomDelegate());
                 break;
             default:
                 break;

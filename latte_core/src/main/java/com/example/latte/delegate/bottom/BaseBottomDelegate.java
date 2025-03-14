@@ -23,6 +23,7 @@ import java.util.Map;
 
 import butterknife.BindString;
 import butterknife.BindView;
+import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragment;
 
 public abstract class BaseBottomDelegate extends LatteDelegate implements View.OnClickListener {
@@ -90,7 +91,7 @@ public abstract class BaseBottomDelegate extends LatteDelegate implements View.O
             }
         }
 
-        final SupportFragment[] delegateArray = ITEM_LIST.toArray(new SupportFragment[size]);
+        final ISupportFragment[] delegateArray = ITEM_LIST.toArray(new SupportFragment[size]);
         loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexDelegate, delegateArray);
     }
 
