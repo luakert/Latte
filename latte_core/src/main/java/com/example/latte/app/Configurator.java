@@ -1,6 +1,7 @@
 package com.example.latte.app;
 
 import android.app.Activity;
+import android.os.Handler;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
@@ -23,6 +24,8 @@ public class Configurator {
         return Holder.INSTANCE;
     }
 
+    private static final Handler HANDLER = new Handler();
+
     final HashMap<Object, Object> getLatteConfigs() {
         return LATTE_CONFIGS;
     }
@@ -34,6 +37,7 @@ public class Configurator {
     public final void configure() {
         initIcons();
         LATTE_CONFIGS.put(ConfigType.CONFIG_READEY, true);
+        LATTE_CONFIGS.put(ConfigType.HANDLER, HANDLER);
     }
 
     public final Configurator withAppHost(String host) {

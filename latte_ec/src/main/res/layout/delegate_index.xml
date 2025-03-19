@@ -1,11 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <androidx.appcompat.widget.AppCompatTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="home"/>
-
-</LinearLayout>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_index"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_index"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_index"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@android:color/transparent">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/icon_index_scan"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="left"
+                android:gravity="center"
+                android:paddingRight="10dp"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                android:text="{icon-scan}"
+                android:layout_height="match_parent"/>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_search_view"
+                android:layout_width="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="4"
+                android:gravity="center_vertical"
+                android:hint="search"
+                android:paddingLeft="20dp"
+                android:background="@android:color/white"
+                android:layout_height="40dp"/>
+            <com.joanzapata.iconify.widget.IconTextView
+                android:id="@+id/icon_index_message"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="right"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                android:text="{fa-bullhorn}"
+                android:layout_height="match_parent"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.Toolbar>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
