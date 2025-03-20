@@ -16,6 +16,15 @@ public class MultipleItemEntity implements MultiItemEntity {
         FIELDS_REFERENCE.get().putAll(fields);
     }
 
+    public static MultipleEntityBuilder builder() {
+        return new MultipleEntityBuilder();
+    }
+
+    @Override
+    public int getItemType() {
+        return (int) FIELDS_REFERENCE.get().get(MultipleFields.ITEM_TYPE);
+    }
+
     @SuppressWarnings("unchecked")
     public final <T> T getField(Object key) {
         return (T) FIELDS_REFERENCE.get().get(key);
@@ -25,15 +34,8 @@ public class MultipleItemEntity implements MultiItemEntity {
         return FIELDS_REFERENCE.get();
     }
 
-    public final MultiItemEntity setField(Object key, Object value) {
+    public final MultipleItemEntity setField(Object key, Object value) {
         FIELDS_REFERENCE.get().put(key, value);
         return this;
     }
-
-    @Override
-    public int getItemType() {
-        return (int) FIELDS_REFERENCE.get().get(MultipleFields.ITEM_TYPE);
-    }
-
-
 }

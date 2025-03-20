@@ -18,7 +18,6 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener {
                 .url(url)
                 .success(response->{
 
-
                 })
                 .build()
                 .get();

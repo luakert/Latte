@@ -64,7 +64,7 @@ dependencies {
     api 'org.greenrobot:greendao:3.3.0'
     //微信依赖（包含统计）
     api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-    implementation 'io.github.cymchad:BaseRecyclerViewAdapterHelper:3.0.4'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
     api project(':latte_compiler')
     annotationProcessor project(':latte_compiler')
 }
