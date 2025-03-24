@@ -65,6 +65,9 @@ dependencies {
     //微信依赖（包含统计）
     api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.50'
+    api 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
+    api 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0' // 可选，用于生成 API
     api project(':latte_compiler')
     annotationProcessor project(':latte_compiler')
 }

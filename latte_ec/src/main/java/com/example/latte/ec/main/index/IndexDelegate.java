@@ -6,6 +6,7 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -45,12 +46,14 @@ public class IndexDelegate extends BottomItemDelegate {
     public void onLazyInitView(@Nullable Bundle savedInstanceState) {
         super.onLazyInitView(savedInstanceState);
         initRefreshLayout();
+        initRecycleView();
         mRefreshHandler.firstPage("index.php");
     }
 
     @Override
     public void onBindView(Bundle saveIns, View rootView) {
-        mRefreshHandler = new RefreshHandler(mRefreshLayout);
+//        mRefreshHandler = new RefreshHandler(mRefreshLayout);
+        mRefreshHandler = RefreshHandler.create(mRefreshLayout, mRecycleView, new IndexDataConverter());
     }
 
     private void initRefreshLayout() {
@@ -58,5 +61,12 @@ public class IndexDelegate extends BottomItemDelegate {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
         mRefreshLayout.setProgressViewOffset(true, 120, 200);
+    }
+
+    private void initRecycleView() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 4);
+        mRecycleView.setLayoutManager(gridLayoutManager);
+
+
     }
 }
